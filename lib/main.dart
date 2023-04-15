@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
               GoRoute(
                 path: Routes.profile,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: ProfilePage()),
+                    NoTransitionPage(child: VCardPage()),
               ),
             ],
           ),
@@ -74,8 +74,8 @@ class MyApp extends StatelessWidget {
             pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
               context: context,
               state: state,
-              // child: SignInPage(),
-              child: VCardPage(),
+              child: SignInPage(),
+              // child: VCardPage(),
             ),
           ),
           GoRoute(
