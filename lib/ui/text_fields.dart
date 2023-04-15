@@ -48,7 +48,7 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
       keyboardType: widget.textInputType,
       autofocus: widget.autofocus,
       readOnly: widget.readonly,
-      cursorColor: AppColors.color7e56e8,
+      cursorColor: AppColors.colorD7FFCA,
       controller: widget.controller,
       obscureText: widget.isPasswordField ? !_passwordVisible : false,
       validator: widget.validator,
@@ -56,10 +56,10 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
         labelText: widget.labelText,
         labelStyle: widget.labelStyle,
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.color7e56e8, width: 2),
+          borderSide: BorderSide(color: AppColors.colorD7FFCA, width: 2),
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.color7e56e8, width: 2),
+          borderSide: BorderSide(color: AppColors.colorD7FFCA, width: 2),
         ),
         suffixIcon: (widget.isPasswordField == true) ? IconButton(
           icon: Icon(

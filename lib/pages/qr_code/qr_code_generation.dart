@@ -40,7 +40,10 @@ class _QrCodeGenerationPageState extends State<QrCodeGenerationPage> {
             height: 50,
             width: 100,
             alignment: Alignment.center,
-            decoration: BoxDecoration(color: AppColors.color7e56e8,borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(
+              color: AppColors.color12D18E,
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: Material(
               color: Colors.transparent,
               child: InkWell(

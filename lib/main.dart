@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_app/pages/auth/welcome_page.dart';
 import 'package:mobile_app/pages/qr_code/qr_code_generation.dart';
 
 import 'pages/auth/sign_in_page.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation:
-            (authService.token == '') ? Routes.signInPage : Routes.qrCode,
+            (authService.token == '') ? Routes.welcome : Routes.qrCode,
         routes: [
           ShellRoute(
             builder: (context, state, child) {
@@ -82,6 +83,15 @@ class MyApp extends StatelessWidget {
               context: context,
               state: state,
               child: SignUpPage(),
+            ),
+          ),
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: Routes.welcome,
+            pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
+              context: context,
+              state: state,
+              child: WelcomePage(),
             ),
           ),
         ],
