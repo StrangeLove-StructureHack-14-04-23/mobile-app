@@ -3,6 +3,7 @@ import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_app/pages/auth/welcome_page.dart';
 import 'package:mobile_app/pages/qr_code/qr_code_generation.dart';
+import 'package:mobile_app/pages/v-card_page.dart';
 
 import 'pages/auth/sign_in_page.dart';
 import 'pages/auth/sign_up_page.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
               GoRoute(
                 path: Routes.profile,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: ProfilePage()),
+                    NoTransitionPage(child: VCardPage()),
               ),
             ],
           ),
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
               context: context,
               state: state,
               child: SignInPage(),
+              // child: VCardPage(),
             ),
           ),
           GoRoute(
