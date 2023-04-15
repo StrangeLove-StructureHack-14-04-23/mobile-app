@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_app/pages/qr_code/qr_code_generation.dart';
 
 import 'pages/auth/sign_in_page.dart';
 import 'pages/auth/sign_up_page.dart';
 import 'pages/main_page.dart';
-import 'pages/nfc/nfc_page.dart';
 import 'pages/profile/profile_page.dart';
+import 'pages/qr_code/qr_code_page.dart';
 import 'pages/wifi/wifi_page.dart';
 import 'service/api_requests.dart';
 import 'utils/app_module_container.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation:
-            (authService.token == '') ? Routes.signInPage : Routes.nfc,
+            (authService.token == '') ? Routes.signInPage : Routes.qrCode,
         routes: [
           ShellRoute(
             builder: (context, state, child) {
@@ -44,9 +45,14 @@ class MyApp extends StatelessWidget {
             },
             routes: [
               GoRoute(
-                path: Routes.nfc,
+                path: Routes.qrCode,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: NfcPage()),
+                    NoTransitionPage(child: QrCodePage()),
+              ),
+              GoRoute(
+                path: Routes.qrCodeGenerate,
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: QrCodeGenerationPage()),
               ),
               GoRoute(
                 path: Routes.wifi,

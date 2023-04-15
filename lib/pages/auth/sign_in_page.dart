@@ -29,7 +29,7 @@ class SignInPage extends StatelessWidget {
             if (state is SignInError) {
               _showSnackBar(context: context, text: state.error);
             } else if (state is SignInSuccess) {
-              context.go(Routes.nfc);
+              context.go(Routes.qrCode);
             }
           },
           builder: (context, state) {

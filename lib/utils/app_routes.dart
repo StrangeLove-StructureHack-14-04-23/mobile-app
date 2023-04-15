@@ -3,13 +3,14 @@ abstract class Routes {
   static const String signInPage = "/signIn";
   static const String signUpPage = "/signUp";
 
-  static const String nfc = '/nfc';
+  static const String qrCode = '/qrCode';
+    static const String qrCodeGenerate = '/qrCode/generate';
   static const String wifi = '/wifi';
   static const String profile = '/profile';
 }
 
 enum MenuRoute {
-  nfc('/nfc'),
+  qrCode('/qrCode'),
   wifi('/wifi'),
   profile('/profile');
 
