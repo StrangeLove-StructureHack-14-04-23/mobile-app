@@ -24,7 +24,7 @@ class SignUpPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignUpBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.color373737,
         body: BlocConsumer<SignUpBloc, SignUpState>(
           listener: (context, state) {
             if (state is SignUpError) {
@@ -35,136 +35,190 @@ class SignUpPage extends StatelessWidget {
           },
           builder: (context, state) {
             return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Column(
-                  children: <Widget>[
-                    Flexible(flex: 2, child: Container()),
-                    Text(
-                      'Регистрация',
-                      style: TextStyle(
-                        fontFamily: 'Comfortaa',
-                        fontSize: 35,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(height: 54,),
+                        Image.asset('assets/images/signIn-page/Logo.png', height: 76,),
+                        const SizedBox(height: 22,),
+                        Text(
+                          'Registration',
+                          style: TextStyle(
+                            fontFamily: 'Comfortaa',
+                            fontSize: 38,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white
+                          ),
+                        ),
+                        // Flexible(flex: 1, child: Container()),
+                        const SizedBox(height: 150,),
+                        // Expanded(child: SizedBox()),
+                        PrimaryTextField(
+                        controller: _textFormLoginController,
+                        labelText: 'Enter your Username...',
+                        labelStyle: TextStyle(),
+                        validator: (e) {},
                       ),
-                    ),
-                    Flexible(flex: 1, child: Container()),
-                    Row(
-                      children: [
-                        Text(
-                          'Email',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 18,
+                      const SizedBox(height: 22,),
+                      PrimaryTextField(
+                        controller: _textFormLoginController,
+                        labelText: 'Enter your Username...',
+                        labelStyle: TextStyle(),
+                        validator: (e) {},
+                      ),
+                      const SizedBox(height: 22,),
+                      PrimaryTextField(
+                        controller: _textFormLoginController,
+                        labelText: 'Enter your Username...',
+                        labelStyle: TextStyle(),
+                        validator: (e) {},
+                      ),
+                      
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        width: 120,
+                        child: Column(children: const [
+                          Divider(
+                            thickness: 1,
+                            height: 8,
+                            color: AppColors.color12D18E,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    PrimaryTextField(
-                      controller: _textFormNameController,
-                      labelText: '',
-                      labelStyle: TextStyle(),
-                      validator: (e) {},
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Логин',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 18,
+                          Divider(
+                            thickness: 1,
+                            height: 8,
+                            color: AppColors.color12D18E,
                           ),
-                        ),
-                      ],
-                    ),
-                    PrimaryTextField(
-                      controller: _textFormLoginController,
-                      labelText: '',
-                      labelStyle: TextStyle(),
-                      validator: (e) {},
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Пароль',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    PrimaryTextField(
-                      controller: _textFormPasswordController,
-                      labelText: '',
-                      labelStyle: TextStyle(),
-                      validator: (e) {},
-                      isPasswordField: true,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
+                          
+                        ],),
+                      ),
+                      Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(12),
                           color: AppColors.color12D18E,
                         ),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () async {
-                              //signUp
-                              context.read<SignUpBloc>().add(
-                                  SignUpReg(
-                                    email: _textFormNameController.text,
-                                    login: _textFormLoginController.text,
-                                    password: _textFormPasswordController.text,                                    
-                                  ),
-                                );
+                              // signIn
+                              // context.read<SignInBloc>().add(
+                              //       SignInAuth(
+                              //         login: _textFormLoginController.text,
+                              //         password:
+                              //             _textFormPasswordController.text,
+                              //       ),
+                              //     );
                             },
                             child: Container(
                               height: 50,
                               child: Center(
                                 child: const Text(
-                                  'Регистрация',
+                                  'Create an Account',
                                   style: TextStyle(
                                       fontFamily: 'VarelaRound',
-                                      fontSize: 20,
-                                      color: Colors.white),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.averageGrey),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      child: Center(
-                        child: CupertinoButton(
-                          onPressed: () {
-                            context.go(Routes.signInPage);
-                          },
-                          child: Text(
-                            "Вход",
-                            style: TextStyle(
-                              color: AppColors.colorD7FFCA,
+                      const SizedBox(height: 22,),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: AppColors.color12D18E,
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () async {
+                              // signIn
+                              // context.read<SignInBloc>().add(
+                              //       SignInAuth(
+                              //         login: _textFormLoginController.text,
+                              //         password:
+                              //             _textFormPasswordController.text,
+                              //       ),
+                              //     );
+                            },
+                            child: Container(
+                              height: 50,
+                              child: Center(
+                                child: const Text(
+                                  'Go Back',
+                                  style: TextStyle(
+                                      fontFamily: 'VarelaRound',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.averageGrey),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
+                      // Flexible(flex: 1, child: Container()),
+                        // Padding(
+                        //   padding: EdgeInsets.symmetric(horizontal: 10),
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(20),
+                        //       color: AppColors.color12D18E,
+                        //     ),
+                        //     child: Material(
+                        //       color: Colors.transparent,
+                        //       child: InkWell(
+                        //         onTap: () async {
+                        //           //signUp
+                        //           context.read<SignUpBloc>().add(
+                        //               SignUpReg(
+                        //                 email: _textFormNameController.text,
+                        //                 login: _textFormLoginController.text,
+                        //                 password: _textFormPasswordController.text,                                    
+                        //               ),
+                        //             );
+                        //         },
+                        //         child: Container(
+                        //           height: 50,
+                        //           child: Center(
+                        //             child: const Text(
+                        //               'Регистрация',
+                        //               style: TextStyle(
+                        //                   fontFamily: 'VarelaRound',
+                        //                   fontSize: 20,
+                        //                   color: Colors.white),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // Container(
+                        //   child: Center(
+                        //     child: CupertinoButton(
+                        //       onPressed: () {
+                        //         context.go(Routes.signInPage);
+                        //       },
+                        //       child: Text(
+                        //         "Вход",
+                        //         style: TextStyle(
+                        //           color: AppColors.colorD7FFCA,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // Flexible(flex: 3, child: Container()),
+                      ],
                     ),
-                    Flexible(flex: 3, child: Container()),
-                  ],
+                  ),
                 ),
               ),
             );
