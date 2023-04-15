@@ -23,7 +23,7 @@ class SignInPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignInBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: AppColors.color12D18E,
+        backgroundColor: AppColors.color373737,
         body: BlocConsumer<SignInBloc, SignInState>(
           listener: (context, state) {
             if (state is SignInError) {
@@ -120,7 +120,7 @@ class SignInPage extends StatelessWidget {
                                 style: TextStyle(
                                     fontFamily: 'VarelaRound',
                                     fontSize: 20,
-                                    color: Colors.black),
+                                    color: AppColors.averageGrey),
                               ),
                             ),
                           ),
@@ -133,7 +133,7 @@ class SignInPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: AppColors.color12D18E,
+                        color: AppColors.colorD7FFCA,
                       ),
                       child: Material(
                         color: Colors.transparent,
