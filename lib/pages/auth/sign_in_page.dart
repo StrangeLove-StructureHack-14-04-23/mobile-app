@@ -39,20 +39,28 @@ class SignInPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     // Flexible(flex: 2, child: Container()),
-                    const SizedBox(height: 54,),
-                    Image.asset('assets/images/signIn-page/Logo.png', height: 76,),
-                    const SizedBox(height: 22,),
+                    const SizedBox(
+                      height: 54,
+                    ),
+                    Image.asset(
+                      'assets/images/signIn-page/Logo.png',
+                      height: 76,
+                    ),
+                    const SizedBox(
+                      height: 22,
+                    ),
                     Text(
                       'Log In',
                       style: TextStyle(
-                        fontFamily: 'Comfortaa',
-                        fontSize: 38,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white
-                      ),
+                          fontFamily: 'Comfortaa',
+                          fontSize: 38,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white),
                     ),
                     // Flexible(flex: 1, child: Container()),
-                    const SizedBox(height: 192,),
+                    const SizedBox(
+                      height: 192,
+                    ),
                     PrimaryTextField(
                       controller: _textFormLoginController,
                       labelText: 'Enter your Username...',
@@ -72,18 +80,20 @@ class SignInPage extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       width: 120,
-                      child: Column(children: const [
-                        Divider(
-                          thickness: 1,
-                          height: 8,
-                          color: AppColors.color12D18E,
-                        ),
-                        Divider(
-                          thickness: 1,
-                          height: 8,
-                          color: AppColors.color12D18E,
-                        ),
-                      ],),
+                      child: Column(
+                        children: const [
+                          Divider(
+                            thickness: 1,
+                            height: 8,
+                            color: AppColors.color12D18E,
+                          ),
+                          Divider(
+                            thickness: 1,
+                            height: 8,
+                            color: AppColors.color12D18E,
+                          ),
+                        ],
+                      ),
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -98,8 +108,7 @@ class SignInPage extends StatelessWidget {
                             context.read<SignInBloc>().add(
                                   SignInAuth(
                                     login: _textFormLoginController.text,
-                                    password:
-                                        _textFormPasswordController.text,
+                                    password: _textFormPasswordController.text,
                                   ),
                                 );
                           },
@@ -118,7 +127,9 @@ class SignInPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 22,),
+                    const SizedBox(
+                      height: 22,
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -132,8 +143,7 @@ class SignInPage extends StatelessWidget {
                             context.read<SignInBloc>().add(
                                   SignInAuth(
                                     login: _textFormLoginController.text,
-                                    password:
-                                        _textFormPasswordController.text,
+                                    password: _textFormPasswordController.text,
                                   ),
                                 );
                           },
