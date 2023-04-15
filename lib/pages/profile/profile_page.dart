@@ -10,8 +10,8 @@ import '../../utils/app_colors.dart';
 import '../../utils/app_routes.dart';
 import 'bloc/profile_bloc.dart';
 
-class EditorPage extends StatelessWidget {
-  EditorPage({super.key});
+class ProfilePage extends StatelessWidget {
+  ProfilePage({super.key});
 
   final authService = Injector().get<AuthService>();
   final String username = 'Admin31';

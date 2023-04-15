@@ -5,6 +5,30 @@ class CardHolderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 300,
+                  height: 50,
+                  color: Colors.red,
+                ),
+                IconButton(
+                  icon: Icon(Icons.refresh),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

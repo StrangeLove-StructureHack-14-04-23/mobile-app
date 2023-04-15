@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_app/pages/auth/welcome_page.dart';
+import 'package:mobile_app/pages/profile/profile_page.dart';
 
 import 'pages/auth/sign_in_page.dart';
 import 'pages/auth/sign_up_page.dart';
 import 'pages/card_holder/card_holder.dart';
+import 'pages/editor/editor_page.dart';
+import 'pages/home/home_page.dart';
 import 'pages/main_page.dart';
-import 'pages/profile/profile_page.dart';
-import 'pages/share/share_page.dart';
+import 'pages/public/public_page.dart';
 import 'service/api_requests.dart';
 import 'utils/app_module_container.dart';
 import 'utils/app_routes.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation:
-            (authService.token == '') ? Routes.welcome : Routes.share,
+            (authService.token == '') ? Routes.welcome : Routes.home,
         routes: [
           ShellRoute(
             builder: (context, state, child) {
@@ -44,21 +46,29 @@ class MyApp extends StatelessWidget {
               );
             },
             routes: [
+              //Home Page
+              GoRoute(
+                path: Routes.home,
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: HomePage()),
+              ),
+              //Favourite
+              GoRoute(
+                path: Routes.cardHolder,
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: CardHolderPage()),
+              ),
               GoRoute(
                 path: Routes.editor,
                 pageBuilder: (context, state) =>
                     NoTransitionPage(child: EditorPage()),
               ),
               GoRoute(
-                path: Routes.share,
+                path: Routes.public,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: SharePage()),
+                    NoTransitionPage(child: PublicPage()),
               ),
-              GoRoute(
-                path: Routes.cardHolder,
-                pageBuilder: (context, state) =>
-                    NoTransitionPage(child: CardHolderPage()),
-              ),            ],
+            ],
           ),
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
@@ -86,6 +96,15 @@ class MyApp extends StatelessWidget {
               context: context,
               state: state,
               child: const WelcomePage(),
+            ),
+          ),
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: Routes.profile,
+            pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
+              context: context,
+              state: state,
+              child: ProfilePage(),
             ),
           ),
         ],
