@@ -56,15 +56,11 @@ class _MainPageState extends State<MainPage> {
           tabs: const [
             GButton(
               icon: Icons.nfc,
-              text: "nfc",
+              text: "home",
             ),
             GButton(
               icon: Icons.wifi,
-              text: "wifi",
-            ),
-            GButton(
-              icon: Icons.person,
-              text: "profle",
+              text: "profile",
             ),
           ],
           selectedIndex: _currentIndex,

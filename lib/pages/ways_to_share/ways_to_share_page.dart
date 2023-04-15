@@ -1,4 +1,4 @@
-import 'package:/flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class WayToSharePage extends StatelessWidget {
   const WayToSharePage({super.key});

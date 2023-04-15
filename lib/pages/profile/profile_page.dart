@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
             if (state is ProfileLogoutState) {
-              context.go(Routes.signInPage);
+              context.go(Routes.welcome);
             }
           },
           builder: (context, state) {

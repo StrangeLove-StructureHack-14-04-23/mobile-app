@@ -21,24 +21,25 @@ class WelcomePage extends StatelessWidget {
                 'assets/images/signIn-page/Logo.png',
                 height: 76,
               ),
-             Spacer(flex: 1),
+              Spacer(flex: 1),
               Text(
                 'Cardify',
                 style: TextStyle(
-                  fontFamily: 'CraftworkGrotesk',
-                  fontWeight: FontWeight.w900,
-                  fontSize: 32,
-                   color: Colors.white
-                ),
+                    fontFamily: 'CraftworkGrotesk',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 32,
+                    color: Colors.white),
               ),
               Spacer(flex: 1),
-              Text('The versatile app for\nversatile people’s cards', style: TextStyle(
-                  fontFamily: 'SpaceGrotesk',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
-                  color: Colors.white
-                ),),
-              Spacer(flex: 2),
+              Text(
+                'The versatile app for\nversatile people’s cards',
+                style: TextStyle(
+                    fontFamily: 'SpaceGrotesk',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24,
+                    color: Colors.white),
+              ),
+              Spacer(flex: 3),
               PrimaryButton(
                 width: 300,
                 height: 44,
@@ -46,7 +47,13 @@ class WelcomePage extends StatelessWidget {
                   context.push(Routes.signInPage);
                 },
                 color: AppColors.color12D18E,
-                child: Text('Log in'),
+                child: Text(
+                  'Log in',
+                  style: TextStyle(
+                      fontFamily: 'SpaceGrotesk',
+                      fontSize: 16,
+                      color: AppColors.averageGrey),
+                ),
               ),
               SizedBox(
                 height: 22,
@@ -55,10 +62,19 @@ class WelcomePage extends StatelessWidget {
                 width: 300,
                 height: 44,
                 onTap: () {
-                  context.push(Routes.signUpPage);
+                  context.push(
+                    Routes.signUpPage,
+                  );
                 },
-                color: AppColors.colorD7FFCA,
-                child: Text('Create an account'),
+                color: AppColors.colorD6D6D6,
+                child: Text(
+                  'Create an account',
+                  style: TextStyle(
+                    fontFamily: 'SpaceGrotesk',
+                    fontSize: 16,
+                    color: AppColors.averageGrey,
+                  ),
+                ),
               ),
               Spacer(),
             ],

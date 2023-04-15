@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_app/pages/auth/welcome_page.dart';
-import 'package:mobile_app/pages/qr_code/qr_code_generation.dart';
+import 'package:mobile_app/pages/home/home_page.dart';
+import 'package:mobile_app/pages/ways_to_share/ways_to_share_page.dart';
 
 import 'pages/auth/sign_in_page.dart';
 import 'pages/auth/sign_up_page.dart';
 import 'pages/main_page.dart';
 import 'pages/profile/profile_page.dart';
-import 'pages/qr_code/qr_code_page.dart';
-import 'pages/wifi/wifi_page.dart';
 import 'service/api_requests.dart';
 import 'utils/app_module_container.dart';
 import 'utils/app_routes.dart';
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation:
-            (authService.token == '') ? Routes.welcome : Routes.qrCode,
+            (authService.token == '') ? Routes.welcome : Routes.home,
         routes: [
           ShellRoute(
             builder: (context, state, child) {
@@ -46,19 +45,9 @@ class MyApp extends StatelessWidget {
             },
             routes: [
               GoRoute(
-                path: Routes.qrCode,
+                path: Routes.home,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: QrCodePage()),
-              ),
-              GoRoute(
-                path: Routes.qrCodeGenerate,
-                pageBuilder: (context, state) =>
-                    NoTransitionPage(child: QrCodeGenerationPage()),
-              ),
-              GoRoute(
-                path: Routes.wifi,
-                pageBuilder: (context, state) =>
-                    NoTransitionPage(child: WifiPage()),
+                    NoTransitionPage(child: HomePage()),
               ),
               GoRoute(
                 path: Routes.profile,
@@ -70,29 +59,30 @@ class MyApp extends StatelessWidget {
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
             path: Routes.signInPage,
-            pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
-              context: context,
-              state: state,
-              child: SignInPage(),
-            ),
+            builder: (BuildContext context, GoRouterState state) {
+              return SignInPage();
+            },
           ),
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
             path: Routes.signUpPage,
-            pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
-              context: context,
-              state: state,
-              child: SignUpPage(),
-            ),
+            builder: (BuildContext context, GoRouterState state) {
+              return SignUpPage();
+            },
           ),
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
             path: Routes.welcome,
-            pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
-              context: context,
-              state: state,
-              child: WelcomePage(),
-            ),
+            builder: (BuildContext context, GoRouterState state) {
+              return WelcomePage();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: Routes.waysToShare,
+            builder: (BuildContext context, GoRouterState state) {
+              return WayToSharePage();
+            },
           ),
         ],
       ),
