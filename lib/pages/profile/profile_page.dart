@@ -40,7 +40,7 @@ class ProfilePage extends StatelessWidget {
                         Icon(
                           Icons.edit,
                           size: 30,
-                          color: AppColors.color7e56e8,
+                          color: AppColors.color12D18E,
                         ),
                       ],
                     ),
@@ -50,47 +50,8 @@ class ProfilePage extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.amber,
                       child: Icon(Icons.person,
-                          size: 30, color: AppColors.color7e56e8),
+                          size: 30, color: AppColors.color12D18E),
                       radius: 150.0,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      '@$username',
-                      style:
-                          TextStyle(fontSize: 20, fontFamily: AppColors.nunito),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '----- Статистика -----',
-                          style: TextStyle(
-                              fontSize: 20, fontFamily: AppColors.nunito),
-                        ),
-                        Text(
-                          'Баланс: 500 руб.',
-                          style: TextStyle(
-                              fontSize: 20, fontFamily: AppColors.nunito),
-                        ),
-                        Text(
-                          'Опыт: 150 exp',
-                          style: TextStyle(
-                              fontSize: 20, fontFamily: AppColors.nunito),
-                        ),
-                        Text(
-                          '----------------------',
-                          style: TextStyle(
-                              fontSize: 20, fontFamily: AppColors.nunito),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0),

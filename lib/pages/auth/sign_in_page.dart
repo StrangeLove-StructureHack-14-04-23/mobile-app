@@ -99,7 +99,7 @@ class SignInPage extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: AppColors.color7e56e8,
+                          color: AppColors.color12D18E,
                         ),
                         child: Material(
                           color: Colors.transparent,
@@ -139,7 +139,7 @@ class SignInPage extends StatelessWidget {
                           child: Text(
                             "Регистрация",
                             style: TextStyle(
-                              color: AppColors.color7e56e8,
+                              color: AppColors.colorD7FFCA,
                             ),
                           ),
                         ),

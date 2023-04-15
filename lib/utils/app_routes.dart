@@ -7,6 +7,7 @@ abstract class Routes {
     static const String qrCodeGenerate = '/qrCode/generate';
   static const String wifi = '/wifi';
   static const String profile = '/profile';
+  static const String welcome = '/welcome';
 }
 
 enum MenuRoute {
