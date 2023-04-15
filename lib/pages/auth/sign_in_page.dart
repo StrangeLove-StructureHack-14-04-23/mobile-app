@@ -23,7 +23,7 @@ class SignInPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignInBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.color3F3F3F,
         body: BlocConsumer<SignInBloc, SignInState>(
           listener: (context, state) {
             if (state is SignInError) {
@@ -35,116 +35,138 @@ class SignInPage extends StatelessWidget {
           builder: (context, state) {
             return SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 38),
                 child: Column(
                   children: <Widget>[
-                    Flexible(flex: 2, child: Container()),
+                    // Flexible(flex: 2, child: Container()),
+                    const SizedBox(height: 54,),
+                    Image.asset('assets/images/signIn-page/Logo.png', height: 76,),
+                    const SizedBox(height: 22,),
                     Text(
-                      'Вход',
+                      'Log In',
                       style: TextStyle(
                         fontFamily: 'Comfortaa',
-                        fontSize: 35,
+                        fontSize: 38,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white
                       ),
                     ),
-                    Flexible(flex: 1, child: Container()),
-                    Row(
-                      children: [
-                        Text(
-                          'Логин',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
+                    // Flexible(flex: 1, child: Container()),
+                    const SizedBox(height: 192,),
                     PrimaryTextField(
                       controller: _textFormLoginController,
-                      labelText: '',
+                      labelText: 'Enter your Username...',
                       labelStyle: TextStyle(),
                       validator: (e) {},
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Пароль',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
+                    const SizedBox(
+                      height: 22,
                     ),
                     PrimaryTextField(
                       controller: _textFormPasswordController,
-                      labelText: '',
+                      labelText: 'Enter your Password...',
                       labelStyle: TextStyle(),
                       validator: (e) {},
                       isPasswordField: true,
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: AppColors.color12D18E,
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      width: 120,
+                      child: Column(children: const [
+                        Divider(
+                          thickness: 1,
+                          height: 8,
+                          color: AppColors.toxicGreen,
                         ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () async {
-                              // signIn
-                              context.read<SignInBloc>().add(
-                                    SignInAuth(
-                                      login: _textFormLoginController.text,
-                                      password:
-                                          _textFormPasswordController.text,
-                                    ),
-                                  );
-                            },
-                            child: Container(
-                              height: 50,
-                              child: Center(
-                                child: const Text(
-                                  'Войти',
-                                  style: TextStyle(
-                                      fontFamily: 'VarelaRound',
-                                      fontSize: 20,
-                                      color: Colors.white),
-                                ),
+                        Divider(
+                          thickness: 1,
+                          height: 8,
+                          color: AppColors.toxicGreen,
+                        ),
+                      ],),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.toxicGreen,
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () async {
+                            // signIn
+                            context.read<SignInBloc>().add(
+                                  SignInAuth(
+                                    login: _textFormLoginController.text,
+                                    password:
+                                        _textFormPasswordController.text,
+                                  ),
+                                );
+                          },
+                          child: Container(
+                            height: 50,
+                            child: Center(
+                              child: const Text(
+                                'Continue',
+                                style: TextStyle(
+                                    fontFamily: 'VarelaRound',
+                                    fontSize: 20,
+                                    color: Colors.black),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
+                    const SizedBox(height: 22,),
                     Container(
-                      child: Center(
-                        child: CupertinoButton(
-                          onPressed: () {
-                            context.go(Routes.signUpPage);
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.toxicGreen,
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () async {
+                            // signIn
+                            context.read<SignInBloc>().add(
+                                  SignInAuth(
+                                    login: _textFormLoginController.text,
+                                    password:
+                                        _textFormPasswordController.text,
+                                  ),
+                                );
                           },
-                          child: Text(
-                            "Регистрация",
-                            style: TextStyle(
-                              color: AppColors.colorD7FFCA,
+                          child: Container(
+                            height: 50,
+                            child: Center(
+                              child: const Text(
+                                'Go Back',
+                                style: TextStyle(
+                                    fontFamily: 'VarelaRound',
+                                    fontSize: 20,
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
+                    // Container(
+                    //   child: Center(
+                    //     child: CupertinoButton(
+                    //       onPressed: () {
+                    //         context.go(Routes.signUpPage);
+                    //       },
+                    //       child: Text(
+                    //         "Регистрация",
+                    //         style: TextStyle(
+                    //           color: AppColors.color7e56e8,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Flexible(flex: 3, child: Container()),
                   ],
                 ),
