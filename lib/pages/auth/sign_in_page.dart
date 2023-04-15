@@ -89,6 +89,7 @@ class SignInPage extends StatelessWidget {
                       labelText: '',
                       labelStyle: TextStyle(),
                       validator: (e) {},
+                      isPasswordField: true,
                     ),
                     SizedBox(
                       height: 20,
