@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_app/pages/auth/welcome_page.dart';
-import 'package:mobile_app/pages/qr_code/qr_code_generation.dart';
-import 'package:mobile_app/pages/v-card_page.dart';
 
 import 'pages/auth/sign_in_page.dart';
 import 'pages/auth/sign_up_page.dart';
+import 'pages/card_holder/card_holder.dart';
 import 'pages/main_page.dart';
 import 'pages/profile/profile_page.dart';
-import 'pages/qr_code/qr_code_page.dart';
-import 'pages/wifi/wifi_page.dart';
+import 'pages/share/share_page.dart';
 import 'service/api_requests.dart';
 import 'utils/app_module_container.dart';
 import 'utils/app_routes.dart';
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation:
-            (authService.token == '') ? Routes.welcome : Routes.qrCode,
+            (authService.token == '') ? Routes.welcome : Routes.share,
         routes: [
           ShellRoute(
             builder: (context, state, child) {
@@ -47,26 +45,20 @@ class MyApp extends StatelessWidget {
             },
             routes: [
               GoRoute(
-                path: Routes.qrCode,
+                path: Routes.editor,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: QrCodePage()),
+                    NoTransitionPage(child: EditorPage()),
               ),
               GoRoute(
-                path: Routes.qrCodeGenerate,
+                path: Routes.share,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: QrCodeGenerationPage()),
+                    NoTransitionPage(child: SharePage()),
               ),
               GoRoute(
-                path: Routes.wifi,
+                path: Routes.cardHolder,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: WifiPage()),
-              ),
-              GoRoute(
-                path: Routes.profile,
-                pageBuilder: (context, state) =>
-                    NoTransitionPage(child: VCardPage()),
-              ),
-            ],
+                    NoTransitionPage(child: CardHolderPage()),
+              ),            ],
           ),
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
@@ -93,7 +85,7 @@ class MyApp extends StatelessWidget {
             pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
               context: context,
               state: state,
-              child: WelcomePage(),
+              child: const WelcomePage(),
             ),
           ),
         ],

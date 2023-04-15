@@ -34,9 +34,9 @@ class SignInPage extends StatelessWidget {
           },
           builder: (context, state) {
             return SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 38),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 38),
+                child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
                       // Flexible(flex: 2, child: Container()),
@@ -53,10 +53,11 @@ class SignInPage extends StatelessWidget {
                       Text(
                         'Log In',
                         style: TextStyle(
-                            fontFamily: 'Comfortaa',
-                            fontSize: 38,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white),
+                          fontFamily: 'Comfortaa',
+                          fontSize: 38,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
                       ),
                       // Flexible(flex: 1, child: Container()),
                       const SizedBox(
@@ -65,7 +66,7 @@ class SignInPage extends StatelessWidget {
                       PrimaryTextField(
                         controller: _textFormLoginController,
                         labelText: 'Enter your Username...',
-                        labelStyle: TextStyle(),
+                        labelStyle: TextStyle(color: AppColors.color7D7D7D),
                         validator: (e) {},
                       ),
                       const SizedBox(
@@ -74,7 +75,7 @@ class SignInPage extends StatelessWidget {
                       PrimaryTextField(
                         controller: _textFormPasswordController,
                         labelText: 'Enter your Password...',
-                        labelStyle: TextStyle(),
+                        labelStyle: TextStyle(color: AppColors.color7D7D7D),
                         validator: (e) {},
                         isPasswordField: true,
                       ),
@@ -109,7 +110,8 @@ class SignInPage extends StatelessWidget {
                               context.read<SignInBloc>().add(
                                     SignInAuth(
                                       login: _textFormLoginController.text,
-                                      password: _textFormPasswordController.text,
+                                      password:
+                                          _textFormPasswordController.text,
                                     ),
                                   );
                             },
@@ -119,8 +121,8 @@ class SignInPage extends StatelessWidget {
                                 child: const Text(
                                   'Continue',
                                   style: TextStyle(
-                                      fontFamily: 'VarelaRound',
-                                      fontSize: 20,
+                                      fontFamily: 'SpaceGrotesk',
+                                      fontSize: 16,
                                       color: AppColors.averageGrey),
                                 ),
                               ),
@@ -134,19 +136,14 @@ class SignInPage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: AppColors.colorD7FFCA,
+                          color: AppColors.colorD6D6D6,
                         ),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () async {
                               // signIn
-                              context.read<SignInBloc>().add(
-                                    SignInAuth(
-                                      login: _textFormLoginController.text,
-                                      password: _textFormPasswordController.text,
-                                    ),
-                                  );
+                              context.pop();
                             },
                             child: Container(
                               height: 50,
@@ -154,8 +151,8 @@ class SignInPage extends StatelessWidget {
                                 child: const Text(
                                   'Go Back',
                                   style: TextStyle(
-                                      fontFamily: 'VarelaRound',
-                                      fontSize: 20,
+                                      fontFamily: 'SpaceGrotesk',
+                                      fontSize: 16,
                                       color: Colors.black),
                                 ),
                               ),
@@ -178,7 +175,6 @@ class SignInPage extends StatelessWidget {
                       //     ),
                       //   ),
                       // ),
-                      Flexible(flex: 3, child: Container()),
                     ],
                   ),
                 ),

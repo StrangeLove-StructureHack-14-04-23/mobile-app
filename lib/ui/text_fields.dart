@@ -52,20 +52,23 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
       controller: widget.controller,
       obscureText: widget.isPasswordField ? !_passwordVisible : false,
       validator: widget.validator,
+      style: TextStyle(color: AppColors.colorD7FFCA),
       decoration: InputDecoration(
         labelText: widget.labelText,
         labelStyle: widget.labelStyle,
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.colorD7FFCA, width: 2),
+          borderSide: BorderSide(color: AppColors.colorEDEDED, width: 2),
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.colorD7FFCA, width: 2),
+          borderSide: BorderSide(color: AppColors.colorEDEDED, width: 2),
+           borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
         suffixIcon: (widget.isPasswordField == true) ? IconButton(
           icon: Icon(
             // Based on passwordVisible state choose the icon
             _passwordVisible ? Icons.visibility : Icons.visibility_off,
-            color: Theme.of(context).primaryColorDark,
+            color: AppColors.colorD7FFCA,
           ),
           onPressed: () {
             // Update the state i.e. toogle the state of passwordVisible variable
