@@ -6,6 +6,10 @@ class AppColors {
   static const Color colorac4c83 = Color(0xffac4c83);
   static const Color color8a184d = Color(0xff8a184d);
   static const Color color867397 = Color(0xff867397);
+  static const Color color3F3F3F = Color(0x3F3F3F);
+  static const Color toxicGreen = Color.fromARGB(255, 140, 233, 108);
+
+  
 
   static const Color color5f175d = Color(0xff5f175d);
   static const Color color5e243c = Color(0xff5e243c);
