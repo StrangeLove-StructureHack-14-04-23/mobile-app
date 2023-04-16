@@ -44,19 +44,19 @@ class SignInPage extends StatelessWidget {
                         height: 54,
                       ),
                       Image.asset(
-                        'assets/images/signIn-page/Logo.png',
+                        'assets/images/signIn-page/Logo2.png',
                         height: 76,
                       ),
                       const SizedBox(
                         height: 22,
                       ),
                       Text(
-                        'Log In',
+                        'Cardify',
                         style: TextStyle(
-                          fontFamily: 'Comfortaa',
-                          fontSize: 38,
+                          fontFamily: 'Phosphate',
+                          fontSize: 16,
                           fontWeight: FontWeight.w900,
-                          color: Colors.white,
+                          color: Color(0xff4285F4),
                         ),
                       ),
                       // Flexible(flex: 1, child: Container()),
@@ -65,7 +65,7 @@ class SignInPage extends StatelessWidget {
                       ),
                       PrimaryTextField(
                         controller: _textFormLoginController,
-                        labelText: 'Enter your Username...',
+                        labelText: 'Введите логин...',
                         labelStyle: TextStyle(
                           color: AppColors.color535353,
                         ),
@@ -76,31 +76,14 @@ class SignInPage extends StatelessWidget {
                       ),
                       PrimaryTextField(
                         controller: _textFormPasswordController,
-                        labelText: 'Enter your Password...',
+                        labelText: 'Введите пароль...',
                         labelStyle: TextStyle(
                           color: AppColors.color535353,
                         ),
                         validator: (e) {},
                         isPasswordField: true,
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        width: 120,
-                        child: Column(
-                          children: const [
-                            Divider(
-                              thickness: 1,
-                              height: 8,
-                              color: AppColors.color1790FF,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              height: 8,
-                              color: AppColors.color1790FF,
-                            ),
-                          ],
-                        ),
-                      ),
+                      const SizedBox(height: 31,),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -123,11 +106,11 @@ class SignInPage extends StatelessWidget {
                               height: 50,
                               child: Center(
                                 child: const Text(
-                                  'Continue',
+                                  'Вход',
                                   style: TextStyle(
                                       fontFamily: 'SpaceGrotesk',
                                       fontSize: 16,
-                                      color: AppColors.color9B9B9B),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
@@ -137,28 +120,25 @@ class SignInPage extends StatelessWidget {
                       const SizedBox(
                         height: 22,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: AppColors.color9B9B9B,
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () async {
-                              // signIn
-                              context.pop();
-                            },
-                            child: Container(
-                              height: 50,
-                              child: Center(
-                                child: const Text(
-                                  'Go Back',
-                                  style: TextStyle(
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () async {
+                            // signIn
+                            context.push(Routes.signUpPage);
+                          },
+                          child: Container(
+                            height: 50,
+                            child: Center(
+                              child: const Text(
+                                'Регистрация',
+                                style: TextStyle(
                                       fontFamily: 'SpaceGrotesk',
                                       fontSize: 16,
-                                      color: Colors.black),
-                                ),
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xff535353),
+                                      decoration: TextDecoration.underline
+                                    ),
                               ),
                             ),
                           ),
