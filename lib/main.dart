@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_app/pages/auth/welcome_page.dart';
+import 'package:mobile_app/pages/editor/data_editor_page.dart';
 import 'package:mobile_app/pages/profile/profile_page.dart';
 
 import 'pages/auth/sign_in_page.dart';
@@ -68,6 +69,11 @@ class MyApp extends StatelessWidget {
                 pageBuilder: (context, state) =>
                     NoTransitionPage(child: PublicPage()),
               ),
+              // GoRoute(
+              //   path: Routes.dataEditor,
+              //   pageBuilder: (context, state) =>
+              //       NoTransitionPage(child: DataRedactorPage()),
+              // ),
             ],
           ),
           GoRoute(
@@ -77,6 +83,16 @@ class MyApp extends StatelessWidget {
               context: context,
               state: state,
               child: SignInPage(),
+              // child: VCardPage(),
+            ),
+          ),
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: Routes.dataEditor,
+            pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
+              context: context,
+              state: state,
+              child: DataRedactorPage(),
               // child: VCardPage(),
             ),
           ),

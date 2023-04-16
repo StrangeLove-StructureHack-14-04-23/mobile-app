@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_app/utils/app_colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dotted_line/dotted_line.dart';
+
+import '../../utils/app_routes.dart';
 
 List<Color> getThemeCardColor({required index}){
   if (index==0){
@@ -387,7 +390,9 @@ class _EditorPageState extends State<EditorPage> {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      context.push(Routes.dataEditor);
+                    },
                     child: Container(
                       width: 300,
                       height: 50,

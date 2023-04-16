@@ -172,13 +172,13 @@ class _CardWidgetState extends State<CardWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 const Icon(Icons.telegram, color: Colors.white,),
-                                const SizedBox(
+                                SizedBox(
                                   width: 19,
                                 ),
                                 InkWell(
                                     child: Text(
                                   widget.telegram,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w400),

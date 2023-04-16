@@ -46,6 +46,7 @@ dependencies:
   wifi_info_plugin_plus: ^2.0.2
   dotted_border: ^2.0.0+3
   dotted_line: ^3.1.0
+  image_picker: ">0.6.7"
 
 dev_dependencies:
   flutter_test:
