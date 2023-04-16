@@ -53,8 +53,8 @@ class SignInPage extends StatelessWidget {
                       const Text(
                         'Cardify',
                         style: TextStyle(
-                          fontFamily: 'Phosphate',
-                          fontSize: 16,
+                          // fontFamily: 'Phosphate',
+                          fontSize: 18,
                           fontWeight: FontWeight.w900,
                           color: Color(0xff4285F4),
                         ),

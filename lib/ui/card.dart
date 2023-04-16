@@ -77,6 +77,7 @@ class _CardWidgetState extends State<CardWidget> {
             ),
           ),
           child: Padding(
+
             padding: const EdgeInsets.all(17.0),
             child: Row(
               children: [
