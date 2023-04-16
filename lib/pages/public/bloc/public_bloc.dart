@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:isolate';
 
 import 'package:bloc/bloc.dart';
@@ -14,26 +15,26 @@ class PublicBloc extends Bloc<PublicEvent, PublicState> {
   final CardService cardService;
   List<Card> _cards = [];
   List<Card> get cards => _cards;
+  final String wifiIp;
 
-  PublicBloc({required this.cardService}) : super(PublicInitial()) {
-    on<PublicEvent>(
-      (event, emit) {
-        if (event is PublicLoadedEvent) {
-          emit(
-            PublicLoadedState(
-              cards: cards,
-            ),
-          );
-        } else if (event is PublicLoadingEvent) {
-          _initPublicPage();
-        }
-      },
-    );
+  PublicBloc({required this.cardService, required this.wifiIp})
+      : super(PublicInitial()) {
+    on<PublicEvent>((event, emit) {
+      if (event is PublicLoadedEvent) {
+        emit(PublicLoadedState(
+          cards: cards,
+        ));
+      } else if (event is PublicLoadingEvent) {
+        _initPublicPage(wifiIp);
+      }
+    });
+    add(PublicLoadingEvent());
   }
 
-  Future<void> _initPublicPage() async {
+  Future<void> _initPublicPage(String wifiIp) async {
     try {
-      _cards = await Isolate.run(cardService.getNearUsersCards);
+      _cards = await Isolate.run(cardService.getNearUsersCards(wifiIp)
+          as FutureOr<List<Card>> Function());
     } catch (e) {
       print(e);
       _cards = [];

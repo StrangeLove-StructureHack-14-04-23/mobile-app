@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
+import 'package:network_info_plus/network_info_plus.dart';
+import 'package:wifi_info_plugin_plus/wifi_info_plugin_plus.dart';
 
 import '../../service/api_requests.dart';
 import '../../service/card_requests.dart';
@@ -14,27 +17,56 @@ import '../../utils/app_routes.dart';
 import '../profile/bloc/profile_bloc.dart';
 import 'bloc/public_bloc.dart';
 
-class PublicPage extends StatelessWidget {
+class PublicPage extends StatefulWidget {
   PublicPage({super.key});
 
+  @override
+  State<PublicPage> createState() => _PublicPageState();
+}
+
+class _PublicPageState extends State<PublicPage> {
   final cardService = Injector().get<CardService>();
+
+  WifiInfoWrapper? _wifiObject;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    WifiInfoWrapper? wifiObject;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      wifiObject = await WifiInfoPlugin.wifiDetails;
+    } on PlatformException {}
+    if (!mounted) return;
+
+    setState(() {
+      _wifiObject = wifiObject;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    String ipAddress =
+        _wifiObject != null ? _wifiObject!.ipAddress.toString() : '';
     return BlocProvider(
-      create: (context) => PublicBloc(cardService: cardService),
+      create: (context) => PublicBloc(cardService: cardService, wifiIp: ipAddress),
       child: Scaffold(
         backgroundColor: AppColors.colorF8FCFF,
         body: BlocConsumer<PublicBloc, PublicState>(
           listener: (context, state) {},
           builder: (context, state) {
-            if (state is PublicInitial) {
-              return _buildInitialBody(context);
-            } else if (state is PublicLoadedState) {
+            print('$state');
+            if (state is PublicLoadedState) {
               return _buildLoadedBody(state: state, context: context);
             } else if (state is PublicLoadingState) {
-              return _builldLoadingBody();
+              return _builldLoadingBody(context);
             } else {
-              return const SizedBox();
+              return _builldLoadingBody(context);
             }
           },
         ),
@@ -42,26 +74,27 @@ class PublicPage extends StatelessWidget {
     );
   }
 
-  Widget _builldLoadingBody() {
-    return Center(
-      child: CupertinoActivityIndicator(),
-    );
-  }
-
-  Widget _buildInitialBody(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Поделитесь своими визитками'),
-        CupertinoButton(
-          onPressed: () {
-            //emit loading
-            context.read<PublicBloc>().add(PublicLoadingEvent());
-          },
-          child: Icon(Icons.share),
-        ),
-      ],
+  Widget _builldLoadingBody(BuildContext context) {
+    return SafeArea(
+      child: Stack(
+        children: [
+          Row(
+            children: [
+              Text('CARDIFY'),
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  context.push(Routes.profile);
+                },
+                child: CircleAvatar(
+                  child: Icon(Icons.person),
+                ),
+              )
+            ],
+          ),
+          Align(child: CupertinoActivityIndicator()),
+        ],
+      ),
     );
   }
 
@@ -127,7 +160,7 @@ class PublicPage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Поделитесь своими визитками'),
+                          Text('В вашей сети визиток не найдено.'),
                           CupertinoButton(
                             onPressed: () {
                               //emit loading
@@ -135,7 +168,7 @@ class PublicPage extends StatelessWidget {
                                   .read<PublicBloc>()
                                   .add(PublicLoadingEvent());
                             },
-                            child: Icon(Icons.share),
+                            child: Icon(Icons.refresh),
                           ),
                         ],
                       ),
