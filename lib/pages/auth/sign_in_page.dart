@@ -50,7 +50,7 @@ class SignInPage extends StatelessWidget {
                       const SizedBox(
                         height: 22,
                       ),
-                      Text(
+                      const Text(
                         'Cardify',
                         style: TextStyle(
                           fontFamily: 'Phosphate',
