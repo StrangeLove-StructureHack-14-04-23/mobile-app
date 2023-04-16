@@ -54,7 +54,8 @@ class _PublicPageState extends State<PublicPage> {
     String ipAddress =
         _wifiObject != null ? _wifiObject!.ipAddress.toString() : '';
     return BlocProvider(
-      create: (context) => PublicBloc(cardService: cardService, wifiIp: ipAddress),
+      create: (context) =>
+          PublicBloc(cardService: cardService, wifiIp: ipAddress),
       child: Scaffold(
         backgroundColor: AppColors.colorF8FCFF,
         body: BlocConsumer<PublicBloc, PublicState>(
@@ -62,7 +63,8 @@ class _PublicPageState extends State<PublicPage> {
           builder: (context, state) {
             print('$state');
             if (state is PublicLoadedState) {
-              return _buildLoadedBody(state: state, context: context);
+              return _buildLoadedBody(
+                  state: state, context: context, wifiIp: ipAddress);
             } else if (state is PublicLoadingState) {
               return _builldLoadingBody(context);
             } else {
@@ -98,8 +100,11 @@ class _PublicPageState extends State<PublicPage> {
     );
   }
 
-  Widget _buildLoadedBody(
-      {required PublicLoadedState state, required BuildContext context}) {
+  Widget _buildLoadedBody({
+    required PublicLoadedState state,
+    required BuildContext context,
+    required String wifiIp,
+  }) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -162,11 +167,23 @@ class _PublicPageState extends State<PublicPage> {
                         children: [
                           Text('В вашей сети визиток не найдено.'),
                           CupertinoButton(
-                            onPressed: () {
+                            onPressed: () async {
                               //emit loading
+                              WifiInfoWrapper? wifiObject;
+                              try {
+                                wifiObject = await WifiInfoPlugin.wifiDetails;
+                              } on PlatformException {}
+                              if (!mounted) return;
+
+                              setState(() {
+                                _wifiObject = wifiObject;
+                              });
+                              String ipAddress = _wifiObject != null
+                                  ? _wifiObject!.ipAddress.toString()
+                                  : '';
                               context
                                   .read<PublicBloc>()
-                                  .add(PublicLoadingEvent());
+                                  .add(PublicLoadingEvent(ipAddress));
                             },
                             child: Icon(Icons.refresh),
                           ),

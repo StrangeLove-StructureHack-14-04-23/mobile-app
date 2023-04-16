@@ -28,7 +28,7 @@ class PublicBloc extends Bloc<PublicEvent, PublicState> {
         _initPublicPage(wifiIp);
       }
     });
-    add(PublicLoadingEvent());
+    add(PublicLoadingEvent(wifiIp));
   }
 
   Future<void> _initPublicPage(String wifiIp) async {

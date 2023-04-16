@@ -58,21 +58,27 @@ class CardService {
   }
 
   Future<List<Card>> getNearUsersCards(String wifiIp) async {
- 
+    String id = prefs.getString('id') ?? '';
     var response = null;
+    var data = null;
     try {
-      
       final response = await APIService.getRequest(
-        request: 'api/cards/user',
-        // data: {'ip': wifiIP},
+        request: 'api/hotspot/connect',
+        data: {
+          'ip': wifiIp,
+          'user_id': id,
+        },
       );
-      print(response.toString());
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
     if (response != null) {
+      final data = await APIService.getRequest(
+        request: 'api/hotspot/cards',
+        data: {
+          'ip': wifiIp,
+        },
+      );
       final List<Card> cards = [];
-      for (final card in response) {
+      for (final card in data) {
         cards.add(Card.fromJson(card));
       }
       return cards;

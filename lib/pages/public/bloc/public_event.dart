@@ -4,11 +4,11 @@ part of 'public_bloc.dart';
 abstract class PublicEvent {}
 
 class PublicLoadingEvent extends PublicEvent {
-  PublicLoadingEvent();
+  final String wifiIp;
+  PublicLoadingEvent(this.wifiIp);
 }
 
 class PublicLoadedEvent extends PublicEvent {
   final List<Card> cards;
   PublicLoadedEvent({required this.cards});
 }
-
