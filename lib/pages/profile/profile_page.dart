@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProfileBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: AppColors.colorF8FCFF,
+        backgroundColor: AppColors.color696969,
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
             if (state is ProfileLogoutState) {
