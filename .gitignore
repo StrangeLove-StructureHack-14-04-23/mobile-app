@@ -22,3 +22,4 @@ doc/api/
 
 *.flutter-plugin
 *.flutter-plugins-dependencies
+.flutter-plugins-dependencies

@@ -25,25 +25,43 @@ class PublicPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.colorF8FCFF,
         body: BlocConsumer<PublicBloc, PublicState>(
-          listener: (context, state) {
-          
-          },
+          listener: (context, state) {},
           builder: (context, state) {
-              if (state is PublicLoadedState) {
-            return _buildLoadedBody(state: state, context: context);
-          } else if (state is PublicLoadingState) {
-            return _builldLoadingBody();
-          } else {
-            return const SizedBox();
-          }
+            if (state is PublicInitial) {
+              return _buildInitialBody(context);
+            } else if (state is PublicLoadedState) {
+              return _buildLoadedBody(state: state, context: context);
+            } else if (state is PublicLoadingState) {
+              return _builldLoadingBody();
+            } else {
+              return const SizedBox();
+            }
           },
         ),
       ),
     );
   }
+
   Widget _builldLoadingBody() {
     return Center(
       child: CupertinoActivityIndicator(),
+    );
+  }
+
+  Widget _buildInitialBody(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('Поделитесь своими визитками'),
+        CupertinoButton(
+          onPressed: () {
+            //emit loading
+            context.read<PublicBloc>().add(PublicLoadingEvent());
+          },
+          child: Icon(Icons.share),
+        ),
+      ],
     );
   }
 
@@ -109,12 +127,15 @@ class PublicPage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Вы ещё не создали визитку'),
+                          Text('Поделитесь своими визитками'),
                           CupertinoButton(
                             onPressed: () {
-                              context.go(Routes.editor);
+                              //emit loading
+                              context
+                                  .read<PublicBloc>()
+                                  .add(PublicLoadingEvent());
                             },
-                            child: const Text('Создать!'),
+                            child: Icon(Icons.share),
                           ),
                         ],
                       ),

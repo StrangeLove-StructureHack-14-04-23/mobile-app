@@ -11,24 +11,27 @@ part 'public_event.dart';
 part 'public_state.dart';
 
 class PublicBloc extends Bloc<PublicEvent, PublicState> {
-   final CardService cardService;
+  final CardService cardService;
   List<Card> _cards = [];
   List<Card> get cards => _cards;
 
   PublicBloc({required this.cardService}) : super(PublicInitial()) {
-    on<PublicEvent>((event, emit) {
-      if (event is PublicLoadedEvent) {
-        emit(PublicLoadedState(
-          cards: cards,
-        ));
-      } else if (event is PublicLoadingEvent) {
-        _initPublicPage();
-      }
-    });
-    add(PublicLoadingEvent());
+    on<PublicEvent>(
+      (event, emit) {
+        if (event is PublicLoadedEvent) {
+          emit(
+            PublicLoadedState(
+              cards: cards,
+            ),
+          );
+        } else if (event is PublicLoadingEvent) {
+          _initPublicPage();
+        }
+      },
+    );
   }
 
-   Future<void> _initPublicPage() async {
+  Future<void> _initPublicPage() async {
     try {
       _cards = await Isolate.run(cardService.getNearUsersCards);
     } catch (e) {
