@@ -43,19 +43,30 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Stack(
         children: [
-          Row(
-            children: [
-              Text('CARDIFY'),
-              Spacer(),
-              InkWell(
-                onTap: () {
-                  context.push(Routes.profile);
-                },
-                child: CircleAvatar(
-                  child: Icon(Icons.person),
-                ),
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                const Text(
+                          'CARDIFY',
+                          style: TextStyle(
+                            fontFamily: 'Phosphate',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
+                            color: Color(0xff4285F4),
+                          ),
+                        ),
+                Spacer(),
+                InkWell(
+                  onTap: () {
+                    context.push(Routes.profile);
+                  },
+                  child: CircleAvatar(
+                    child: Icon(Icons.person),
+                  ),
+                )
+              ],
+            ),
           ),
           Align(child: CupertinoActivityIndicator()),
         ],
@@ -72,7 +83,15 @@ class _HomePageState extends State<HomePage> {
           children: [
             Row(
               children: [
-                Text('CARDIFY'),
+                const Text(
+                        'CARDIFY',
+                        style: TextStyle(
+                          fontFamily: 'Phosphate',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xff4285F4),
+                        ),
+                      ),
                 Spacer(),
                 InkWell(
                   onTap: () {
@@ -87,10 +106,10 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              height: 40,
-              color: AppColors.color9B9B9B,
-            ),
+            // Container(
+            //   height: 40,
+            //   color: AppColors.color9B9B9B,
+            // ),
             SizedBox(
               height: 20,
             ),
