@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mobile_app/pages/auth/welcome_page.dart';
 import 'package:mobile_app/pages/editor/data_editor_page.dart';
 import 'package:mobile_app/pages/profile/profile_page.dart';
+import 'package:mobile_app/pages/profile/profile_page2.dart';
 
 import 'pages/auth/sign_in_page.dart';
 import 'pages/auth/sign_up_page.dart';
@@ -120,7 +121,7 @@ class MyApp extends StatelessWidget {
             pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
               context: context,
               state: state,
-              child: ProfilePage(),
+              child: ProfilePage2(),
             ),
           ),
         ],
