@@ -21,11 +21,11 @@ class ProfilePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProfileBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: AppColors.color373737,
+        backgroundColor: AppColors.colorF8FCFF,
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
             if (state is ProfileLogoutState) {
-              context.go(Routes.signInPage);
+              context.go(Routes.welcome);
             }
           },
           builder: (context, state) {
@@ -61,7 +61,7 @@ class ProfilePage extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(18),
-                            color: AppColors.color303030,
+                            color: AppColors.colorF8FCFF,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -72,7 +72,7 @@ class ProfilePage extends StatelessWidget {
                                   Text(
                                     'Name:',
                                     style: TextStyle(
-                                        color: AppColors.lightGrey,
+                                        color: AppColors.colorF8FCFF,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w400),
                                   ),
@@ -82,7 +82,7 @@ class ProfilePage extends StatelessWidget {
                                   Text(
                                     'Age:',
                                     style: TextStyle(
-                                        color: AppColors.lightGrey,
+                                        color: AppColors.colorF8FCFF,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w400),
                                   ),
@@ -92,7 +92,7 @@ class ProfilePage extends StatelessWidget {
                                   Text(
                                     'Location:',
                                     style: TextStyle(
-                                        color: AppColors.lightGrey,
+                                        color: AppColors.colorF8FCFF,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w400),
                                   ),
@@ -146,7 +146,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 110,
                                 // width: 150,
                                 decoration: BoxDecoration(
-                                    color: AppColors.color00C399,
+                                    color: AppColors.colorF8FCFF,
                                     borderRadius: BorderRadius.circular(18)),
                                 child: Center(
                                   child: Column(
@@ -213,7 +213,7 @@ class ProfilePage extends StatelessWidget {
                           height: 110,
                           // width: 150,
                           decoration: BoxDecoration(
-                              color: AppColors.colorFE6C7A,
+                              color: AppColors.colorF8FCFF,
                               borderRadius: BorderRadius.circular(18)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

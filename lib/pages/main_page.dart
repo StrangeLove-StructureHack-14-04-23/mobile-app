@@ -47,7 +47,7 @@ class _MainPageState extends State<MainPage> {
           backgroundColor: const Color(0xFFF8FBFF),
           color: const Color(0xFF8F939E),
           activeColor: const Color(0xFFFFFFFF),
-          tabBackgroundColor: AppColors.color12D18E,
+          tabBackgroundColor: AppColors.color1790FF,
           tabBorderRadius: 100,
           iconSize: 20,
           gap: 8,

@@ -17,20 +17,20 @@ class SignUpPage extends StatelessWidget {
 
   final _textFormLoginController = TextEditingController();
   final _textFormPasswordController = TextEditingController();
-  final _textFormNameController = TextEditingController();
+  final _textFormEmailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignUpBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: AppColors.color373737,
+        backgroundColor: AppColors.colorF8FCFF,
         body: BlocConsumer<SignUpBloc, SignUpState>(
           listener: (context, state) {
             if (state is SignUpError) {
               _showSnackBar(context: context, text: state.error);
             } else if (state is SignUpSuccess) {
-              context.go(Routes.qrCode);
+              context.go(Routes.home);
             }
           },
           builder: (context, state) {
@@ -68,7 +68,16 @@ class SignUpPage extends StatelessWidget {
                           PrimaryTextField(
                             controller: _textFormLoginController,
                             labelText: 'Enter your Username...',
-                            labelStyle: TextStyle(color: AppColors.color7D7D7D),
+                            labelStyle: TextStyle(color: AppColors.color535353.withOpacity(0.8)),
+                            validator: (e) {},
+                          ),
+                          const SizedBox(
+                            height: 22,
+                          ),
+                          PrimaryTextField(
+                            controller: _textFormEmailController,
+                            labelText: 'Enter your E-mail...',
+                            labelStyle: TextStyle(color: AppColors.color535353.withOpacity(0.8)),
                             validator: (e) {},
                           ),
                           const SizedBox(
@@ -76,17 +85,8 @@ class SignUpPage extends StatelessWidget {
                           ),
                           PrimaryTextField(
                             controller: _textFormPasswordController,
-                            labelText: 'Enter your E-mail...',
-                            labelStyle: TextStyle(color: AppColors.color7D7D7D),
-                            validator: (e) {},
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          PrimaryTextField(
-                            controller: _textFormNameController,
                             labelText: 'Enter your Password...',
-                            labelStyle: TextStyle(color: AppColors.color7D7D7D),
+                            labelStyle: TextStyle(color: AppColors.color535353.withOpacity(0.8)),
                             validator: (e) {},
                             isPasswordField: true,
                           ),
@@ -98,12 +98,12 @@ class SignUpPage extends StatelessWidget {
                                 Divider(
                                   thickness: 1,
                                   height: 8,
-                                  color: AppColors.color12D18E,
+                                  color: AppColors.color9B9B9B,
                                 ),
                                 Divider(
                                   thickness: 1,
                                   height: 8,
-                                  color: AppColors.color12D18E,
+                                  color: AppColors.color9B9B9B,
                                 ),
                               ],
                             ),
@@ -111,7 +111,7 @@ class SignUpPage extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: AppColors.color12D18E,
+                              color: AppColors.color9B9B9B
                             ),
                             child: Material(
                               color: Colors.transparent,
@@ -120,7 +120,7 @@ class SignUpPage extends StatelessWidget {
                                   //signUp
                                   context.read<SignUpBloc>().add(
                                         SignUpReg(
-                                          email: _textFormNameController.text,
+                                          email: _textFormEmailController.text,
                                           login: _textFormLoginController.text,
                                           password:
                                               _textFormPasswordController.text,
@@ -136,7 +136,7 @@ class SignUpPage extends StatelessWidget {
                                         fontFamily: 'SpaceGrotesk',
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
-                                        color: AppColors.averageGrey,
+                                        color: AppColors.color9B9B9B,
                                       ),
                                     ),
                                   ),
@@ -150,7 +150,7 @@ class SignUpPage extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: AppColors.colorD6D6D6,
+                              color: AppColors.color9B9B9B,
                             ),
                             child: Material(
                               color: Colors.transparent,
@@ -167,7 +167,7 @@ class SignUpPage extends StatelessWidget {
                                         fontFamily: 'SpaceGrotesk',
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
-                                        color: AppColors.averageGrey,
+                                        color: AppColors.color9B9B9B,
                                       ),
                                     ),
                                   ),

@@ -1,129 +1,143 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app/ui/buttons.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_simple_dependency_injection/injector.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_app/utils/app_colors.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'dart:async';
-import 'package:wifi_info_plugin_plus/wifi_info_plugin_plus.dart';
 
+import '../../service/card_requests.dart';
 import '../../ui/card.dart';
+import '../../utils/app_routes.dart';
+import 'bloc/home_bloc.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final cardService = Injector().get<CardService>();
 
   @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController();
-    return WifiPage();
-  }
-}
-
-class WifiPage extends StatefulWidget {
-  const WifiPage({super.key});
-  @override
-  State<WifiPage> createState() => _WifiPageState();
-}
-
-class _WifiPageState extends State<WifiPage> {
-  WifiInfoWrapper? _wifiObject;
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
+    return BlocProvider(
+      create: (context) => HomeBloc(cardService: cardService),
+      child: BlocConsumer<HomeBloc, HomeState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          if (state is HomeLoadedState) {
+            return _buildLoadedBody(state: state, context: context);
+          } else if (state is HomeLoadingState) {
+            return _builldLoadingBody();
+          } else {
+            return const SizedBox();
+          }
+        },
+      ),
+    );
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    WifiInfoWrapper? wifiObject;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      wifiObject = await WifiInfoPlugin.wifiDetails;
-    } on PlatformException {}
-    if (!mounted) return;
-
-    setState(() {
-      _wifiObject = wifiObject;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    String ipAddress =
-        _wifiObject != null ? _wifiObject!.ipAddress.toString() : "...";
-    String macAddress =
-        _wifiObject != null ? _wifiObject!.macAddress.toString() : '...';
-    String connectionType = _wifiObject != null
-        ? _wifiObject!.connectionType.toString()
-        : 'unknown';
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Stack(
+  Widget _builldLoadingBody() {
+    return Center(
+      child: Column(
         children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return CardWidget(
-                name: '',
-                phone: '',
-                role: '',
-                telegram: '',
-                vk: '',
-              );
-            },
-          ),
-          Align(
-            alignment: Alignment(0, 0.9),
-            child: PrimaryButton(
-              color: AppColors.color12D18E,
-              height: 50,
-              onTap: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Your Qr-code'),
-                  content: _buildQrCode('hello'),
-                  actions: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context, 'OK'),
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    ),
-                  ],
+          Row(
+            children: [
+              Text('CARDIFY'),
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  context.push(Routes.profile);
+                },
+                child: CircleAvatar(
+                  child: Icon(Icons.person),
                 ),
-              ),
-              width: 300,
-              child: Text('Create qr-code'),
-            ),
+              )
+            ],
           ),
+          CupertinoActivityIndicator(),
         ],
       ),
     );
   }
 
-  Widget? _buildQrCode(String data) {
-    try {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 200.0,
-            height: 200.0,
-            child: QrImage(
-              errorStateBuilder: (context, error) => Text(error.toString()),
-              data: '$data',
+  Widget _buildLoadedBody(
+      {required HomeLoadedState state, required BuildContext context}) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text('CARDIFY'),
+                Spacer(),
+                InkWell(
+                  onTap: () {
+                    context.push(Routes.profile);
+                  },
+                  child: CircleAvatar(
+                    child: Icon(Icons.person),
+                  ),
+                )
+              ],
             ),
-          ),
-        ],
-      );
-    } catch (e) {
-      return null;
-    }
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 40,
+              color: AppColors.color9B9B9B,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: (state.cards.length != 0)
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.cards.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: 6,
+                            ),
+                            CardWidget(
+                              name: state.cards[index].id.toString(),
+                              phone: state.cards[index].phone.toString(),
+                              role: state.cards[index].role.toString(),
+                              telegram:
+                                  state.cards[index].telegramUrl.toString(),
+                              vk: state.cards[index].ownSite,
+                              userId: state.cards[index].id.toString(),
+                            ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                          ],
+                        );
+                      },
+                    )
+                  : Container(
+                      child: Column(
+                        children: [
+                          Text('Вы ещё не создали визитку'),
+                          CupertinoButton(
+                            onPressed: () {
+                              context.go(Routes.editor);
+                            },
+                            child: const Text('Создать!'),
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

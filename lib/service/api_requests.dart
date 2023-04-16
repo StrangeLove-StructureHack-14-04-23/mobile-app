@@ -43,9 +43,9 @@ class AuthService {
     required String username,
     required String email,
     required String password,
-    String first_name = '',
-    String last_name = '',
-    String description = '',
+    String first_name = 'hello',
+    String last_name = 'my',
+    String description = 'friend',
   }) async {
     dynamic data = await APIService.postRequest(
       request: 'api/register',
@@ -53,15 +53,17 @@ class AuthService {
         'username': username,
         'email': email,
         'password': password,
-        'first_name': '123',
-        'last_name': '123',
-        'description': '123'
+        'first_name': first_name,
+        'last_name': last_name,
+        'description': description
       },
     );
 
     try {
-      if (data != '' && data['username'] != '') {
+      if (data != '' && data['username'] != '' && data['id'] != '') {
         await prefs.setString('token', data['username']);
+        await prefs.setString('id', data['id'].toString());
+        print('${data['id']} -- id');
         _token = data['username'];
         return 'Token: ${data['username']}';
       }

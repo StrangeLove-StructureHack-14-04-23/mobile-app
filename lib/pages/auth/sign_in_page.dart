@@ -23,13 +23,13 @@ class SignInPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignInBloc(authService: authService),
       child: Scaffold(
-        backgroundColor: AppColors.color373737,
+        backgroundColor: AppColors.colorF8FCFF,
         body: BlocConsumer<SignInBloc, SignInState>(
           listener: (context, state) {
             if (state is SignInError) {
               _showSnackBar(context: context, text: state.error);
             } else if (state is SignInSuccess) {
-              context.go(Routes.qrCode);
+              context.go(Routes.home);
             }
           },
           builder: (context, state) {
@@ -66,7 +66,9 @@ class SignInPage extends StatelessWidget {
                       PrimaryTextField(
                         controller: _textFormLoginController,
                         labelText: 'Enter your Username...',
-                        labelStyle: TextStyle(color: AppColors.color7D7D7D),
+                        labelStyle: TextStyle(
+                          color: AppColors.color535353,
+                        ),
                         validator: (e) {},
                       ),
                       const SizedBox(
@@ -75,7 +77,9 @@ class SignInPage extends StatelessWidget {
                       PrimaryTextField(
                         controller: _textFormPasswordController,
                         labelText: 'Enter your Password...',
-                        labelStyle: TextStyle(color: AppColors.color7D7D7D),
+                        labelStyle: TextStyle(
+                          color: AppColors.color535353,
+                        ),
                         validator: (e) {},
                         isPasswordField: true,
                       ),
@@ -87,12 +91,12 @@ class SignInPage extends StatelessWidget {
                             Divider(
                               thickness: 1,
                               height: 8,
-                              color: AppColors.color12D18E,
+                              color: AppColors.color1790FF,
                             ),
                             Divider(
                               thickness: 1,
                               height: 8,
-                              color: AppColors.color12D18E,
+                              color: AppColors.color1790FF,
                             ),
                           ],
                         ),
@@ -100,7 +104,7 @@ class SignInPage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: AppColors.color12D18E,
+                          color: AppColors.color1790FF,
                         ),
                         child: Material(
                           color: Colors.transparent,
@@ -123,7 +127,7 @@ class SignInPage extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: 'SpaceGrotesk',
                                       fontSize: 16,
-                                      color: AppColors.averageGrey),
+                                      color: AppColors.color9B9B9B),
                                 ),
                               ),
                             ),
@@ -136,7 +140,7 @@ class SignInPage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: AppColors.colorD6D6D6,
+                          color: AppColors.color9B9B9B,
                         ),
                         child: Material(
                           color: Colors.transparent,

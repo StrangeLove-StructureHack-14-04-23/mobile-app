@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.color373737,
+      backgroundColor: AppColors.colorF8FCFF,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -45,7 +45,7 @@ class WelcomePage extends StatelessWidget {
                 onTap: () {
                   context.push(Routes.signInPage);
                 },
-                color: AppColors.color12D18E,
+                color: AppColors.color1790FF,
                 child: Text('Log in'),
               ),
               SizedBox(
@@ -57,7 +57,7 @@ class WelcomePage extends StatelessWidget {
                 onTap: () {
                   context.push(Routes.signUpPage);
                 },
-                color: AppColors.colorD7FFCA,
+                color: AppColors.color9B9B9B,
                 child: Text('Create an account'),
               ),
               Spacer(),

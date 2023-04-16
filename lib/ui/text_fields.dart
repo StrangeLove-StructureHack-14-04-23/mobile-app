@@ -48,35 +48,39 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
       keyboardType: widget.textInputType,
       autofocus: widget.autofocus,
       readOnly: widget.readonly,
-      cursorColor: AppColors.colorD7FFCA,
+      cursorColor: AppColors.color1790FF,
       controller: widget.controller,
       obscureText: widget.isPasswordField ? !_passwordVisible : false,
       validator: widget.validator,
-      style: TextStyle(color: AppColors.colorD7FFCA),
+      style: TextStyle(
+        color: AppColors.color1790FF,
+      ),
       decoration: InputDecoration(
         labelText: widget.labelText,
         labelStyle: widget.labelStyle,
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.colorEDEDED, width: 2),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.color9B9B9B, width: 2),
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.colorEDEDED, width: 2),
-           borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        focusedBorder:  OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.color9B9B9B, width: 2),
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
-        suffixIcon: (widget.isPasswordField == true) ? IconButton(
-          icon: Icon(
-            // Based on passwordVisible state choose the icon
-            _passwordVisible ? Icons.visibility : Icons.visibility_off,
-            color: AppColors.colorD7FFCA,
-          ),
-          onPressed: () {
-            // Update the state i.e. toogle the state of passwordVisible variable
-            setState(() {
-              _passwordVisible = !_passwordVisible;
-            });
-          },
-        ) : null,
+        suffixIcon: (widget.isPasswordField == true)
+            ? IconButton(
+                icon: Icon(
+                  // Based on passwordVisible state choose the icon
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: AppColors.colorF8FCFF,
+                ),
+                onPressed: () {
+                  // Update the state i.e. toogle the state of passwordVisible variable
+                  setState(() {
+                    _passwordVisible = !_passwordVisible;
+                  });
+                },
+              )
+            : null,
       ),
     );
   }
