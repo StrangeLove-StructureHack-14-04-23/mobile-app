@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wifi_info_plugin_plus/wifi_info_plugin_plus.dart';
 
 import '../models/card_model.dart';
+import '../pages/editor/data_editor_page.dart';
 import 'api_service.dart';
 
 class CardService {
@@ -29,14 +30,31 @@ class CardService {
     return [];
   }
 
-  void createCard(String id) async {
+  void createCard({
+    required String role,
+    required String phone,
+    required String own_site,
+    required String linkedin_url,
+    required String telegram_url,
+  }) async {
     final response = await APIService.postRequest(
       request: 'api/cards/create',
-      data: {'id': id},
+      data: {
+        'role': role,
+        'phone': phone,
+        'own_site': own_site,
+        'linkedin_url': linkedin_url,
+        'telegram_url': telegram_url,
+        'owner_id': prefs.getString('id')!,
+      },
     );
     if (response != null) {
       print('success');
-    } else {}
+      DataRedactorPage.isCardSend = true;
+
+    } else {
+      DataRedactorPage.isCardSend = false;
+    }
   }
 
   Future<List<Card>> getNearUsersCards() async {

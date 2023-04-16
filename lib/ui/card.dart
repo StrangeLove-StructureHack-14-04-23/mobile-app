@@ -16,7 +16,7 @@ class CardWidget extends StatefulWidget {
     required this.phone,
     required this.telegram,
     required this.vk,
-    required this.userId,
+    required this.cardId,
   });
 
   final String name;
@@ -25,45 +25,15 @@ class CardWidget extends StatefulWidget {
   final String phone;
   final String telegram;
   final String vk;
-  final String userId;
+  final String cardId;
 
   @override
   State<CardWidget> createState() => _CardWidgetState();
 }
 
 class _CardWidgetState extends State<CardWidget> {
-  WifiInfoWrapper? _wifiObject;
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    WifiInfoWrapper? wifiObject;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      wifiObject = await WifiInfoPlugin.wifiDetails;
-    } on PlatformException {}
-    if (!mounted) return;
-
-    setState(() {
-      _wifiObject = wifiObject;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    String ipAddress =
-        _wifiObject != null ? _wifiObject!.ipAddress.toString() : "...";
-    String macAddress =
-        _wifiObject != null ? _wifiObject!.macAddress.toString() : '...';
-    String connectionType = _wifiObject != null
-        ? _wifiObject!.connectionType.toString()
-        : 'unknown';
-
     return Container(
       width: 334,
       height: 178,
@@ -91,7 +61,8 @@ class _CardWidgetState extends State<CardWidget> {
             context: context,
             builder: (BuildContext context) => AlertDialog(
               title: const Text('Your Qr-code'),
-              content: _buildQrCode('I`m $widget.userId'),
+              content: _buildQrCode(
+                  'http://94.131.97.26:8080/api/cards/web/${widget.cardId}'),
               actions: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -171,7 +142,10 @@ class _CardWidgetState extends State<CardWidget> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                const Icon(Icons.telegram, color: Colors.white,),
+                                const Icon(
+                                  Icons.telegram,
+                                  color: Colors.white,
+                                ),
                                 SizedBox(
                                   width: 19,
                                 ),

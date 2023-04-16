@@ -3,29 +3,35 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobile_app/service/card_requests.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/app_routes.dart';
 
 class DataRedactorPage extends StatefulWidget {
   const DataRedactorPage({super.key});
+  static bool isCardSend = false;
 
   @override
   State<DataRedactorPage> createState() => _DataRedactorPageState();
 }
 
 class _DataRedactorPageState extends State<DataRedactorPage> {
+  final cardService = Injector().get<CardService>();
+
   XFile? _portreit;
   TextEditingController _textName = TextEditingController();
   TextEditingController _textLastName = TextEditingController();
-  TextEditingController _textBurthday = TextEditingController();
+  TextEditingController _textRole = TextEditingController();
 
   TextEditingController _textPhone = TextEditingController();
   TextEditingController _textTg = TextEditingController();
   TextEditingController _textVk = TextEditingController();
 
-  TextEditingController _textEmail = TextEditingController();
+  TextEditingController _textOwnSite = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +135,9 @@ class _DataRedactorPageState extends State<DataRedactorPage> {
                 height: 20,
               ),
               TextFormField(
-                controller: _textBurthday,
+                controller: _textRole,
                 decoration: const InputDecoration(
-                  hintText: 'Дата рождения',
+                  hintText: 'Роль',
                   // labelText: 'Name *',
                 ),
                 onSaved: (String? value) {
@@ -220,9 +226,9 @@ class _DataRedactorPageState extends State<DataRedactorPage> {
                 height: 15,
               ),
               TextFormField(
-                controller: _textEmail,
+                controller: _textOwnSite,
                 decoration: const InputDecoration(
-                  hintText: 'Эл.почта',
+                  hintText: 'LinkedIn',
                   // labelText: 'Name *',
                 ),
                 onSaved: (String? value) {
@@ -249,7 +255,25 @@ class _DataRedactorPageState extends State<DataRedactorPage> {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      context.pop();
+                      cardService.createCard(
+                        role: _textRole.text,
+                        phone: _textPhone.text,
+                        own_site: _textOwnSite.text,
+                        linkedin_url: _textVk.text,
+                        telegram_url: _textTg.text,
+                      );
+                      if (DataRedactorPage.isCardSend) {
+                        _textRole.clear();
+                        _textPhone.clear();
+                        _textOwnSite.clear();
+                        _textVk.clear();
+                        _textTg.clear();
+                        context.pop();
+                      } else {
+                        _showSnackBar(
+                            context: context,
+                            text: 'Ошибка! Измените описание визитки.');
+                      }
                     },
                     child: Container(
                       width: 300,
@@ -302,5 +326,15 @@ class _DataRedactorPageState extends State<DataRedactorPage> {
         ),
       )),
     );
+  }
+
+  _showSnackBar({required BuildContext context, required String text}) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        text,
+        textAlign: TextAlign.center,
+      ),
+      behavior: SnackBarBehavior.floating,
+    ));
   }
 }

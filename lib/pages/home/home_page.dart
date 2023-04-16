@@ -112,7 +112,8 @@ class _HomePageState extends State<HomePage> {
                               telegram:
                                   state.cards[index].telegramUrl.toString(),
                               vk: state.cards[index].ownSite,
-                              userId: state.cards[index].id.toString(),
+                              cardId: state.cards[index].id.toString(),
+
                             ),
                             SizedBox(
                               height: 6,
