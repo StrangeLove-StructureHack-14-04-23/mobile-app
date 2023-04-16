@@ -40,8 +40,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _builldLoadingBody() {
-    return Center(
-      child: Column(
+    return SafeArea(
+      child: Stack(
         children: [
           Row(
             children: [
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          CupertinoActivityIndicator(),
+          Align(child: CupertinoActivityIndicator()),
         ],
       ),
     );
@@ -121,18 +121,17 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     )
-                  : Container(
-                      child: Column(
-                        children: [
-                          Text('Вы ещё не создали визитку'),
-                          CupertinoButton(
-                            onPressed: () {
-                              context.go(Routes.editor);
-                            },
-                            child: const Text('Создать!'),
-                          ),
-                        ],
-                      ),
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Вы ещё не создали визитку'),
+                        CupertinoButton(
+                          onPressed: () {
+                            context.go(Routes.editor);
+                          },
+                          child: const Text('Создать!'),
+                        ),
+                      ],
                     ),
             ),
           ],
