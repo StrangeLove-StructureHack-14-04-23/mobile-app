@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation:
-            (authService.token == '') ? Routes.welcome : Routes.home,
+            (authService.token == '') ? Routes.signInPage : Routes.home,
         routes: [
           ShellRoute(
             builder: (context, state, child) {
@@ -112,7 +112,8 @@ class MyApp extends StatelessWidget {
             pageBuilder: (context, state) => buildPageWithPopupTransition<void>(
               context: context,
               state: state,
-              child: const WelcomePage(),
+              // child: const WelcomePage(),
+              child: SignInPage(), // На всякий случай
             ),
           ),
           GoRoute(
