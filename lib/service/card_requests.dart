@@ -47,7 +47,7 @@ class CardService {
     try {
       wifiObject = await WifiInfoPlugin.wifiDetails;
       String ipAddress =
-          _wifiObject != null ? _wifiObject!.ipAddress.toString() : "...";
+          _wifiObject != null ? _wifiObject.ipAddress.toString() : "";
       final response = await APIService.getRequest(
         request: 'api/cards/user',
         data: {'ip': ipAddress},

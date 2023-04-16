@@ -27,8 +27,10 @@ class AuthService {
     );
 
     try {
-      if (data != '' && data['jwt'] != '') {
+      if (data != '' && data['jwt'] != '' && data['user_id'] != '') {
         await prefs.setString('token', data['jwt']);
+        await prefs.setString('id', data['user_id'].toString());
+        print('${data['user_id']} -- id');
         _token = data['jwt'];
         return 'Token: ${data['jwt']}';
       }

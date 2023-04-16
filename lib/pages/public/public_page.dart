@@ -107,6 +107,7 @@ class PublicPage extends StatelessWidget {
                     )
                   : Container(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Вы ещё не создали визитку'),
                           CupertinoButton(
