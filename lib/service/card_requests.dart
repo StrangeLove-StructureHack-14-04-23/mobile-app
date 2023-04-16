@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:network_info_plus/network_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wifi_info_plugin_plus/wifi_info_plugin_plus.dart';
 
@@ -51,27 +52,24 @@ class CardService {
     if (response != null) {
       print('success');
       DataRedactorPage.isCardSend = true;
-
     } else {
       DataRedactorPage.isCardSend = false;
     }
   }
 
-  Future<List<Card>> getNearUsersCards() async {
-    WifiInfoWrapper? _wifiObject;
-    WifiInfoWrapper? wifiObject;
+  Future<List<Card>> getNearUsersCards(String wifiIp) async {
+ 
     var response = null;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      wifiObject = await WifiInfoPlugin.wifiDetails;
-      String ipAddress =
-          _wifiObject != null ? _wifiObject.ipAddress.toString() : "";
+      
       final response = await APIService.getRequest(
         request: 'api/cards/user',
-        data: {'ip': ipAddress},
+        // data: {'ip': wifiIP},
       );
       print(response.toString());
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
     if (response != null) {
       final List<Card> cards = [];
       for (final card in response) {

@@ -47,6 +47,7 @@ dependencies:
   dotted_border: ^2.0.0+3
   dotted_line: ^3.1.0
   image_picker: ">0.6.7"
+  network_info_plus: ^3.0.3
 
 dev_dependencies:
   flutter_test:
