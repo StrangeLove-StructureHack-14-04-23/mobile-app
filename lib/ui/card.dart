@@ -114,24 +114,24 @@ class _CardWidgetState extends State<CardWidget> {
                   children: [
                     Text(
                       widget.role,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
                     Text(
                       widget.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -147,18 +147,18 @@ class _CardWidgetState extends State<CardWidget> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.phone,
                                   size: 20,
                                   color: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 19,
                                 ),
                                 InkWell(
                                     child: Text(
                                   widget.phone,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.blue,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w400),
@@ -171,14 +171,14 @@ class _CardWidgetState extends State<CardWidget> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(Icons.telegram, color: Colors.white,),
-                                SizedBox(
+                                const Icon(Icons.telegram, color: Colors.white,),
+                                const SizedBox(
                                   width: 19,
                                 ),
                                 InkWell(
                                     child: Text(
                                   widget.telegram,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w400),
