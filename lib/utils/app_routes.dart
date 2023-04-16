@@ -5,11 +5,12 @@ abstract class Routes {
   static const String welcome = '/welcome';
 
   static const String editor = '/editor';
+  static const String dataEditor = '/dataEditor';
   static const String profile = '/profile';
   static const String share = '/share';
   static const String cardHolder = '/cardHolder';
   static const String public = '/public';
-    static const String home = '/home';
+  static const String home = '/home';
 }
 
 enum MenuRoute {
