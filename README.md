@@ -10,8 +10,8 @@
 🔷 Overall, the electronic business card service provides an efficient solution for managing and exchanging business cards in the modern age.<br />
 
 ## Exploitation
-🔹 Android  - [APK](https://drive.google.com/file/d/1hRmK9d6oSEIFHKYqpMOg9qAMl-6SoHBr/view?usp=drivesdk)<br />
-🔹 IOS  - [APK](https://drive.google.com/file/d/1hRmK9d6oSEIFHKYqpMOg9qAMl-6SoHBr/view?usp=drivesdk)
+🔹 Android  - [APK](https://drive.google.com/file/d/1ncKy4I5Nh73nTnqBRqisGuWCykCemn83/view?usp=sharing)<br />
+🔹 IOS  - ask [@tw0ch](https://t.me/tw0ch) for TestFlight
 
 ## Application Development
 
