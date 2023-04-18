@@ -20,5 +20,5 @@
 - *Nikita Sergievsky* - Backend dev [@codeyouth](https://t.me/codeyouth)
 - *Tatiana Bobyleva* - Design [@tattumm](https://t.me/tattumm)
 - *Maxim Zhukov* - Design [@By_od1](https://t.me/by_od1)
-- *Vasily Dzerzhinsky* - Design [@MartinLuteranin](https://t.me/MartinLuteranin)
+- *Vasily Dedkov* - Design [@MartinLuteranin](https://t.me/MartinLuteranin)
 - *Daniil Orlov* - Product/Project manager [@MrOrlov_1](https://t.me/MrOrlov_1)
